@@ -8,7 +8,7 @@ Real-time Prediction: Provides instant classification results with confidence sc
 
 Installation:
 1. Clone the repository:
-(git clone https://github.com/your-username/image-classifier.git)
+(git clone https://github.com/vkulkarni33/image-classifier.git)
 (cd image-classifier)
 
 2. Install the required dependencies:
