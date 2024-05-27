@@ -22,35 +22,35 @@ Code Explanation:
 
 Loading the Model and Labels:
 The Keras model and class names are loaded at the beginning:
-model = load_model("/content/keras_model.h5", compile=False).
-class_names = open("/content/labels.txt", "r").readlines().
+model = load_model("/content/keras_model.h5", compile=False)
+class_names = open("/content/labels.txt", "r").readlines()
 
 Image Classification Function:
 The classify_image function processes the input image and returns the classification result:
 def classify_image(image):
-    image = ImageOps.fit(image, (224, 224), Image.Resampling.LANCZOS).
-    image_array = np.asarray(image).
-    normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1.
-    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32).
-    data[0] = normalized_image_array.
-    prediction = model.predict(data).
-    index = np.argmax(prediction).
-    class_name = class_names[index].strip().
-    confidence_score = prediction[0][index].
+    image = ImageOps.fit(image, (224, 224), Image.Resampling.LANCZOS)
+    image_array = np.asarray(image)
+    normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
+    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+    data[0] = normalized_image_array
+    prediction = model.predict(data)
+    index = np.argmax(prediction)
+    class_name = class_names[index].strip()
+    confidence_score = prediction[0][index]
     result_text = f"Class: {class_name}\nConfidence Score: {confidence_score:.2f}"
-    return result_text.
+    return result_text
 
 
 Gradio Interface:
 The Gradio interface is created and launched using the gr.Interface function:
-interface = gr.Interface(.
-    fn=classify_image,.
-    inputs=gr.Image(),.
-    outputs="text",.
-    title="Image Classifier",.
-    description="Upload an image to classify it as a Cat or Dog.".
-).
-interface.launch().
+interface = gr.Interface(
+    fn=classify_image,
+    inputs=gr.Image(),
+    outputs="text",
+    title="Image Classifier",
+    description="Upload an image to classify it as a Cat or Dog."
+)
+interface.launch()
 
 
 Contributing.
