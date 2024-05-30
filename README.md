@@ -22,8 +22,9 @@ Code Explanation:
 
 Loading the Model and Labels:
 The Keras model and class names are loaded at the beginning:
-model = load_model("/content/keras_model.h5", compile=False)
-class_names = open("/content/labels.txt", "r").readlines()
+    
+    model = load_model("/content/keras_model.h5", compile=False)
+    class_names = open("/content/labels.txt", "r").readlines()
 
 Image Classification Function:
 The classify_image function processes the input image and returns the classification result:
