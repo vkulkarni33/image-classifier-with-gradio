@@ -28,6 +28,7 @@ class_names = open("/content/labels.txt", "r").readlines()
 Image Classification Function:
 The classify_image function processes the input image and returns the classification result:
 def classify_image(image):
+    
     image = ImageOps.fit(image, (224, 224), Image.Resampling.LANCZOS)
     image_array = np.asarray(image)
     normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
@@ -43,14 +44,16 @@ def classify_image(image):
 
 Gradio Interface:
 The Gradio interface is created and launched using the gr.Interface function:
-interface = gr.Interface(
-    fn=classify_image,
-    inputs=gr.Image(),
-    outputs="text",
-    title="Image Classifier",
-    description="Upload an image to classify it as a Cat or Dog."
-)
-interface.launch()
+
+
+    interface = gr.Interface(
+     fn=classify_image,
+     inputs=gr.Image(),
+     outputs="text",
+     title="Image Classifier",
+     description="Upload an image to classify it as a Cat or Dog."
+    )
+    interface.launch()
 
 
 Contributing.
